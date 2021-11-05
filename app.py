@@ -1,10 +1,8 @@
 import streamlit as st
-
-x = st.slider('Select a value')
-st.write(x, 'squared is', x * x)
-
-st.sidebar.checkbox('Click me')
-
-st.button('Click')
-
-st.markdown(':+1: :tada:')
+from transformers import pipeline
+st.title('Ejemplo en Hugging Face')
+pipe = pipeline('sentiment-analysis')
+text = st.text_area('enter some text')
+if text:
+    out = pipe(text)
+    st.json(out)
